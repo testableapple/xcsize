@@ -1,0 +1,22 @@
+opt_out_usage
+skip_docs
+
+lane :release do
+  code_review
+  sh('bundle exec rake build')
+  gem_path = "pkg/xcsize-#{version}.gem"
+  sh("gem push ../#{gem_path}")
+  set_github_release(
+    repository_name: 'testableapple/xcsize',
+    api_token: ENV.fetch("GITHUB_TOKEN", nil),
+    name: version,
+    tag_name: version,
+    description: "See [CHANGELOG.md](https://github.com/testableapple/xcsize/blob/main/CHANGELOG.md##{version.delete('.')})",
+    commitish: git_branch,
+    upload_assets: [gem_path]
+  )
+end
+
+lane :code_review do
+  sh('bundle exec rake')
+end
