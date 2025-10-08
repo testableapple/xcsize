@@ -27,7 +27,7 @@ $ gem install xcsize
 ### Profile a single linkmap
 
 ```bash
-xcsize profile --linkmap path/to/your/app.linkmap
+xcsize profile --linkmap path/to/your/linkmap.txt
 ```
 
 Options:
@@ -37,7 +37,7 @@ Options:
 ### Compare two linkmaps
 
 ```bash
-xcsize compare --old-linkmap old.linkmap --new-linkmap new.linkmap
+xcsize compare --old-linkmap old_linkmap.txt --new-linkmap new_linkmap.txt
 ```
 
 Options:
@@ -57,9 +57,9 @@ fastlane add_plugin xcsize
 
 ```ruby
 lane :test do
-  xcsize(linkmap: 'path/to/your/app.linkmap')
+  xcsize(linkmap: 'path/to/your/linkmap.txt')
 
-  xcsize_diff(old_linkmap: 'path/to/your/old.linkmap', new_linkmap: 'path/to/your/new.linkmap')
+  xcsize_diff(old_linkmap: 'path/to/your/old_linkmap.txt', new_linkmap: 'path/to/your/new_linkmap.txt')
 end
 ```
 
