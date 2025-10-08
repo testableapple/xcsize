@@ -20,3 +20,8 @@ end
 lane :code_review do
   sh('bundle exec rake')
 end
+
+def version
+  version_path = '../lib/xcsize/version.rb'
+  File.read(version_path).scan(/\d+/).join('.')
+end
