@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'commander/import'
+
 module Xcsize
   class CLI
     def self.run

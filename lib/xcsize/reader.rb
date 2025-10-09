@@ -90,10 +90,7 @@ module Xcsize
     end
 
     def self.parse_linkmap(path)
-      unless File.exist?(path)
-        puts("Error: linkmap file not found: #{path}")
-        exit(1)
-      end
+      raise "Linkmap file not found: #{path}" unless File.exist?(path)
 
       files = {}
       in_objects = false
