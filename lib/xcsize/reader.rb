@@ -97,7 +97,10 @@ module Xcsize
       in_symbols = false
       id_to_path = {}
 
-      File.foreach(path, chomp: true) do |line|
+      File.foreach(path, chomp: true, encoding: 'ASCII-8BIT') do |line|
+        # Convert to UTF-8, replacing invalid sequences
+        line = line.encode('UTF-8', 'ASCII-8BIT', invalid: :replace, undef: :replace)
+
         if line.start_with?('# Object files:')
           in_objects = true
           next
